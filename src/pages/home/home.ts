@@ -9,7 +9,7 @@ import { WalksService } from '../../providers/walks.service';
   templateUrl: 'home.html'
 })
 export class HomePage {
-	walks: Walk[] = []; 
+	walks = []; 
   	
   	constructor(public navCtrl: NavController,private walksService: WalksService) {
 
@@ -24,9 +24,24 @@ export class HomePage {
 			    // // image_url:'../../assets/imgs/kentish-town.png',
 			    // // description:'A walk around Kentish Town'
       	// 	}]	
-      		this.walks = walkInfo;
-      		this.walks = [{name:'Kentish Town'}];
-      		console.log(this.walks); 
+      		for(let walk of walkInfo) {
+              
+              let rmvExt = walk.split('.')[0]; 
+              let optVal = rmvExt;  
+              let optName = rmvExt.replace(/_/g,' '); 
+              this.walks.push({name:optName, val:optVal});
+          }
    		});
   	}
+
+    getDirections(walk:any) {
+        this.walksService.getDirections(walk.val)
+        .then((directions) => {
+
+            console.log(directions); 
+
+        }); 
+
+
+    }
 }
