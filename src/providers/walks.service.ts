@@ -20,8 +20,7 @@ export class WalksService {
 
     getDirections(walkVal:any): Promise<Any> {
     	
-    	let url = this.walksUrl + 'get_directions' + '/' + walkVal; 
-    	debugger
+    	let url = this.walksUrl + 'get-directions' + '/' + walkVal; 
         return this.http.get(url)
              .toPromise()
              .then(directions => directions.json() as []); 
