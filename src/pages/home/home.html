@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content padding>
-    <div *ngFor="let walk of walks" (click)="getDirections(walk)">
+    <div *ngFor="let walk of walks" (click)="goToWalk(walk)">
         {{walk.name}}
     </div>
   

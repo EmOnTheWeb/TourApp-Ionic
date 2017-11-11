@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { Walk } from '../../walk';
+import { NavController, NavParams } from 'ionic-angular';
 import { WalksService } from '../../providers/walks.service'; 
+import { WalkPage } from '../walk/walk'; 
 
 
 @Component({
@@ -9,8 +9,8 @@ import { WalksService } from '../../providers/walks.service';
   templateUrl: 'home.html'
 })
 export class HomePage {
-	walks = []; 
-  	
+	  walks = []; 
+
   	constructor(public navCtrl: NavController,private walksService: WalksService) {
 
   	}
@@ -33,15 +33,7 @@ export class HomePage {
           }
    		});
   	}
-
-    getDirections(walk:any) {
-        this.walksService.getDirections(walk.val)
-        .then((directions) => {
-
-            console.log(directions); 
-
-        }); 
-
-
+    goToWalk(walk:any) {
+        this.navCtrl.push(WalkPage, {walk});
     }
 }

@@ -23,6 +23,21 @@ export class WalksService {
     	let url = this.walksUrl + 'get-directions' + '/' + walkVal; 
         return this.http.get(url)
              .toPromise()
-             .then(directions => directions.json() as []); 
+             .then(directions => directions.json() as [])
+             .catch(this.handleError); 
     }
+
+    getLandmarks(walkVal:any): Promise<Any> {
+
+    	let url = this.walksUrl + 'get-landmarks' + '/' + walkVal;
+        return this.http.get(url)
+             .toPromise()
+             .then(landmarks => landmarks)
+             .catch(this.handleError);
+    }
+
+    private handleError(error: any): Promise<any> {
+        console.error('An error occurred', error); 
+        return Promise.reject(error.message || error);
+    } 
 }
