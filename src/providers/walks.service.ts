@@ -18,7 +18,7 @@ export class WalksService {
              .then(walks => walks.json() as Walk[]); 
     }
 
-    getDirections(walkVal:any): Promise<Any> {
+    getDirections(walkVal:any): Promise<any> {
     	
     	let url = this.walksUrl + 'get-directions' + '/' + walkVal; 
         return this.http.get(url)
@@ -27,7 +27,7 @@ export class WalksService {
              .catch(this.handleError); 
     }
 
-    getLandmarks(walkVal:any): Promise<Any> {
+    getLandmarks(walkVal:any): Promise<any> {
 
     	let url = this.walksUrl + 'get-landmarks' + '/' + walkVal;
         return this.http.get(url)
