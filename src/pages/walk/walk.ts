@@ -90,7 +90,7 @@ export class WalkPage {
                 
             }
         }
-        return { beginning: startCoordinate, end: endCoordinate, legs: legs }; 
+        return { beginning: startCoordinate, end: endCoordinate, legs: legs, waypoints:waypointsOnly }; 
     }
 
     getLandmarks(walk:any) {
