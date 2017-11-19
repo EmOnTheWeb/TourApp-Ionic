@@ -19,29 +19,37 @@ export class WalkPage {
 
 	ngOnInit(): void {
 		this.walk = this.navParams.get("walk");
-		this.getDirections(this.walk); 
+        Promise.all([this.getDirections(this.walk), this.getLandmarks(this.walk)]).then(walkData => { 
+
+        });
+		
 	}
 
 	getDirections(walk:any) {
+        return new Promise((resolve, reject) => {
 
-        this.storage.get(this.walk.name).then((directions) => {
-            if(directions) {
-                this.walkDirections = directions; 
-            } 
-            else { 
-                //retrieve from the api 
-                this.walksService.getDirections(walk.val)
-                .then((directions) => {
+            this.storage.get(this.walk.name).then((directions) => {
+                if(directions) {
+                    this.walkDirections = directions;
 
-                    this.walkDirections = this.parseDirections(directions); 
-                  
-                    this.storage.set(this.walk.name,this.walkDirections).then(
-                        (value) => console.log('directions stored'),
-                        (error) => console.error('Error storing item', error)); 
-                });  
-            }
-        });  
-        this.getLandmarks(walk);  
+                    resolve(this.walkDirections);  
+                } 
+                else { 
+                    //retrieve from the api 
+                    this.walksService.getDirections(walk.val)
+                    .then((directions) => {
+
+                        this.walkDirections = this.parseDirections(directions); 
+                        
+                        resolve(this.walkDirections); 
+
+                        this.storage.set(this.walk.name,this.walkDirections).then(
+                            (value) => console.log('directions stored'),
+                            (error) => console.error('Error storing item', error)); 
+                    });  
+                }
+            }); 
+        });   
     }
 
     parseDirections(directions) {
@@ -86,19 +94,25 @@ export class WalkPage {
     }
 
     getLandmarks(walk:any) {
-        this.storage.get(this.walk.name + '-landmarks').then((landmarks) => {
-            if(landmarks) {
-                this.walkLandmarks = landmarks; 
-            } 
-            else {
-            	this.walksService.getLandmarks(walk.val)
-                .then((landmarks) => {
-                    this.storage.set(this.walk.name + '-landmarks',landmarks).then(
-                        (value) => console.log('landmarks stored'),
-                        (error) => console.error('Error storing item', error)); 
+        return new Promise((resolve, reject) => {
+            this.storage.get(this.walk.name + '-landmarks').then((landmarks) => {
+                if(landmarks) {
                     this.walkLandmarks = landmarks; 
-                });
-            }
+                    resolve(this.walkLandmarks); 
+                } 
+                else {
+                	this.walksService.getLandmarks(walk.val)
+                    .then((landmarks) => {
+                        this.walkLandmarks = landmarks; 
+                        resolve(this.walkLandmarks); 
+
+                        this.storage.set(this.walk.name + '-landmarks',landmarks).then(
+                            (value) => console.log('landmarks stored'),
+                            (error) => console.error('Error storing item', error)); 
+                       
+                    });
+                }
+            }); 
         }); 
     }
 
