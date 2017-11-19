@@ -46,7 +46,7 @@ export class WalkPage {
 
     parseDirections(directions) {
 
-        let turnByTurn = directions['turn-by-turn'].json(); 
+        let turnByTurn = directions['turn-by-turn']; 
         turnByTurn = JSON.parse(turnByTurn); 
         let waypointsOnly = directions['waypoint-coordinates'];  
            
@@ -56,8 +56,6 @@ export class WalkPage {
         //walk start and end coordinates
         let startCoordinate = turnByTurn.waypoints[0].location.join(); 
         let endCoordinate = turnByTurn.waypoints[turnByTurn.waypoints.length-1].location.join(); 
-
-        let legs = turnByTurn.routes[0].legs; 
 
         for(let leg of legs) {
             //remove properties you don't need 
