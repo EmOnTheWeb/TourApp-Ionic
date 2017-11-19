@@ -12,15 +12,18 @@ export class WalkPage {
 	walk; 
 	walkDirections; 
 	walkLandmarks; 
+    walkData; 
 	
 	constructor(public navCtrl: NavController, private storage: Storage, public navParams: NavParams, private walksService: WalksService) {
 		this.storage.clear(); 
 	}
 
 	ngOnInit(): void {
+ 
 		this.walk = this.navParams.get("walk");
         Promise.all([this.getDirections(this.walk), this.getLandmarks(this.walk)]).then(walkData => { 
-
+            this.walkData = walkData; 
+            console.log(this.walkData); 
         });
 		
 	}

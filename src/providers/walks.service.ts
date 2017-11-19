@@ -23,7 +23,7 @@ export class WalksService {
     	let url = this.walksUrl + 'get-directions' + '/' + walkVal; 
         return this.http.get(url)
              .toPromise()
-             .then(directions => directions.json() as [])
+             .then(directions => directions.json())
              .catch(this.handleError); 
     }
 
