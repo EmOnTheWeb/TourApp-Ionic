@@ -50,7 +50,6 @@ export class MapboxService {
     }
 
     marker(el: any, options: Object, coordinates: string[]) {
-    	console.log(coordinates); 
 		setTimeout(() => {
 			new mapboxgl.Marker(el, options)
 				.setLngLat(coordinates)

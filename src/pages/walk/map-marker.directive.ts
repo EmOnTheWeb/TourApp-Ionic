@@ -27,7 +27,7 @@ export class MapBoxMarkerDirective implements OnInit {
 
 			this.mapboxService.marker(
 				el, // element
-				{}, // options
+				{offset: [0, -this.height / 2]}, // options
 				this.coordinates // coordinates
 			);  
 
