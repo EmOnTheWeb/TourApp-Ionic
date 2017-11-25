@@ -1,14 +1,12 @@
 import { Component, Input } from '@angular/core';
-import * as mapboxgl from 'mapbox-gl';
+import { MapboxService } from '../../providers/mapbox.service';
 
 @Component({
   selector: 'walk-map',
   templateUrl: 'walk-map.component.html',
 })
 export class WalkMap {
-  /// default settings
-  map: mapboxgl.Map;
-  style = 'mapbox://styles/mapbox/streets-v9'; 
+
   latLng:[]; 
 
   @Input()
@@ -16,7 +14,7 @@ export class WalkMap {
   // data
 
   markers: any;
-  constructor() {
+  constructor(public mapboxService: MapboxService) {
   }
   ngOnInit() {
     // this.markers = this.mapService.getMarkers()
@@ -30,13 +28,7 @@ export class WalkMap {
   }
 
   buildMap() {
-      mapboxgl.accessToken = 'pk.eyJ1IjoiZW1pbGllZGFubmVuYmVyZyIsImEiOiJjaXhmOTB6ZnowMDAwMnVzaDVkcnpsY2M1In0.33yDwUq670jHD8flKjzqxg';
-      this.map = new mapboxgl.Map({
-        container: 'map',
-        style: this.style,
-        zoom: 15,
-        center: this.latLng
-      }); 
+      this.mapboxService.buildMap(this.latLng); 
       this.gatherRouteCoordinates(); 
   }
 
@@ -64,36 +56,6 @@ export class WalkMap {
               }) ; 
           }); 
       }); 
-      this.plotRoute(routeCoordinates); 
+      this.mapboxService.plotRoute(routeCoordinates); 
   }
-
-  plotRoute(coordinates:string[]) {
-      this.map.on('load', () => {
-
-          this.map.addLayer({
-              "id": "route",
-              "type": "line",
-              "source": {
-                  "type": "geojson",
-                  "data": {
-                      "type": "Feature",
-                      "properties": {},
-                      "geometry": {
-                          "type": "LineString",
-                          "coordinates": coordinates
-                      }
-                  }
-              },
-              "layout": {
-                  "line-join": "round",
-                  "line-cap": "round"
-              },
-              "paint": {
-                  "line-color": "#d66",
-                  "line-width": 4
-              }
-          });
-      });
-  }
-
 }

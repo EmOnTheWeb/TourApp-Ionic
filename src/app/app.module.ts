@@ -5,6 +5,7 @@ import { MyApp } from './app.component';
 import { HttpModule }    from '@angular/http';
 import { TabsPage } from '../pages/tabs/tabs';
 import { WalksService } from '../providers/walks.service'; 
+import { MapboxService } from '../providers/mapbox.service'; 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
@@ -45,6 +46,7 @@ import { IonicStorageModule } from '@ionic/storage';
     StatusBar,
     SplashScreen,
     WalksService,
+    MapboxService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
    
   ]
