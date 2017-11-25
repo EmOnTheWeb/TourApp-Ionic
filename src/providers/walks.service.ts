@@ -32,7 +32,7 @@ export class WalksService {
     	let url = this.walksUrl + 'get-landmarks' + '/' + walkVal;
         return this.http.get(url)
              .toPromise()
-             .then(landmarks => landmarks)
+             .then(landmarks => landmarks.json())
              .catch(this.handleError);
     }
 

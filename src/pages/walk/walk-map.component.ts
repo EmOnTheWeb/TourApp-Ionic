@@ -55,14 +55,16 @@ export class WalkMap {
                   routeCoordinates.push(intersectionCoordinate); 
               }) ; 
           }); 
-      }); 
+      });
+
       this.waypoints = waypointCoordinates; 
-      console.log(waypointCoordinates); 
       this.mapboxService.plotRoute(routeCoordinates); 
   }
 
-  showWaypointInfo(waypointCoordinates:string[]) {
-    console.log('i clicked'); 
-
+  showWaypointInfo(waypoint:string[]) {
+      let index = this.waypoints.indexOf(waypoint); 
+      let landmarkInfo = this.data[1]; 
+      
+      console.log(landmarkInfo); 
   }
 }
