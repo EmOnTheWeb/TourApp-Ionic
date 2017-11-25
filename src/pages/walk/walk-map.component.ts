@@ -42,43 +42,31 @@ export class WalkMap {
 
   gatherRouteCoordinates() {
       let legs = this.data[0].legs; 
-
       let routeCoordinates = []; 
       let waypointCoordinates = []; 
 
-      for(let routeLeg of legs) {
+      legs.forEach(function(leg, legIndex) {
+          
+          let legSteps = leg.steps; 
 
-          let legSteps = routeLeg.steps; 
+          legSteps.forEach(function(step, stepIndex) {
 
-          for(let step of legSteps) {
-
-              let stepIntersections = step.intersections; 
-
-              for(let intersection of stepIntersections) {
-
-                   let intersectionCoordinate = intersection.location; 
-                   routeCoordinates.push(intersectionCoordinate); 
-
+              if(stepIndex === legSteps.length-1 && step.type === 'arrive' && legIndex !== legs.length-1){
+                  waypointCoordinates.push(step.location);
               }
-          }
-      }
-      this.plotRoute(routeCoordinates); 
-  // for(var i=0;i<routeLegs.length;i++) {
-    
-  //   var legSteps = routeLegs[i].steps; 
-  //   for(var index=0; index< legSteps.length; index++) {
 
-  //     if(index === legSteps.length -1 && legSteps[index].type === 'arrive' && i !== routeLegs.length -1) { 
-  //       waypointCoordinates.push(legSteps[index].location); 
-  //     }
-  //     var stepIntersections = legSteps[index].intersections; 
-  //     for(var inter=0; inter< stepIntersections.length; inter++) {
-  //       var intersectionCoordinate=stepIntersections[inter].location; 
-  //       routeCoordinates.push(intersectionCoordinate); 
-  //     }
-  //   }
-  // }
+              let stepIntersections = step.intersections;
+
+              stepIntersections.forEach(function(intersection,intersectionIndex) {
+
+                  let intersectionCoordinate = intersection.location; 
+                  routeCoordinates.push(intersectionCoordinate); 
+              }) ; 
+          }); 
+      }); 
+      this.plotRoute(routeCoordinates); 
   }
+
   plotRoute(coordinates:string[]) {
       this.map.on('load', () => {
 
