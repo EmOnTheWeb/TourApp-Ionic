@@ -9,7 +9,7 @@ export class MapboxService {
    
     constructor() { }
 
-    buildMap(latLng:[]) {
+    buildMap(latLng:string[]) {
 	    mapboxgl.accessToken = 'pk.eyJ1IjoiZW1pbGllZGFubmVuYmVyZyIsImEiOiJjaXhmOTB6ZnowMDAwMnVzaDVkcnpsY2M1In0.33yDwUq670jHD8flKjzqxg';
 	    this.map = new mapboxgl.Map({
 	        container: 'map',
@@ -20,6 +20,7 @@ export class MapboxService {
     }
 
     plotRoute(coordinates:string[]) {
+
 	    this.map.on('load', () => {
 
           	this.map.addLayer({

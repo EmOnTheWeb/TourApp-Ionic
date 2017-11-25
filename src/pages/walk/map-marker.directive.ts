@@ -3,20 +3,16 @@ import { MapboxService } from '../../providers/mapbox.service';
 
 @Directive({
 	selector: 'mapbox-marker',
-	inputs: ['image', 'width', 'height', 'coordinates', 'click', 'data', 'flyTo']
+	inputs: ['coordinates']
 })
 export class MapBoxMarkerDirective implements OnInit {
-		image: String;
+		image: String = 'assets/imgs/icon-marker.png'; 
 		width: number = 60;
 		height: number = 60;
 		coordinates: number[];
-		popup: String;
-		map: Object;
-		data: Object;
-		flyTo: number;
-		@Output() click = new EventEmitter();
+		// @Output() click = new EventEmitter();
 
-		constructor(@Inject(MapboxService) private _mapBoxService: MapBoxService) {}
+		constructor(@Inject(MapboxService) private _mapBoxService: MapboxService) {}
 
 		ngOnInit() {
 			var el = document.createElement('div');
@@ -34,16 +30,16 @@ export class MapBoxMarkerDirective implements OnInit {
 				this.coordinates // coordinates
 			);  
 
-			el.addEventListener("click", () => {
+			// el.addEventListener("click", () => {
 
-				if(this.flyTo) {
-					this._mapBoxService.flyTo(this.coordinates, this.flyTo);
-				}
+			// 	if(this.flyTo) {
+			// 		this._mapBoxService.flyTo(this.coordinates, this.flyTo);
+			// 	}
 					
-				this.click.emit({
-					data: this.data,
-					coordinates: this.coordinates
-				});
-			});
+			// 	this.click.emit({
+			// 		data: this.data,
+			// 		coordinates: this.coordinates
+			// 	});
+			// });
 		}
  }

@@ -1,1 +1,6 @@
-<div id="map"></div>
+<div id="map">
+	<mapbox-marker
+        *ngFor="let marker of waypoints"
+        [coordinates]="marker.coordinates">
+    </mapbox-marker>
+</div>

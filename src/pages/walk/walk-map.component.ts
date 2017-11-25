@@ -7,7 +7,7 @@ import { MapboxService } from '../../providers/mapbox.service';
 })
 export class WalkMap {
 
-  latLng:[]; 
+  latLng:string[]; 
 
   @Input()
   data; 
@@ -29,6 +29,7 @@ export class WalkMap {
 
   buildMap() {
       this.mapboxService.buildMap(this.latLng); 
+      console.log(this.latLng); 
       this.gatherRouteCoordinates(); 
   }
 
@@ -36,7 +37,7 @@ export class WalkMap {
       let legs = this.data[0].legs; 
       let routeCoordinates = []; 
       let waypointCoordinates = []; 
-
+      console.log(waypointCoordinates); 
       legs.forEach(function(leg, legIndex) {
           
           let legSteps = leg.steps; 
