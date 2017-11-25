@@ -9,9 +9,7 @@ export class WalkMap {
   /// default settings
   map: mapboxgl.Map;
   style = 'mapbox://styles/mapbox/streets-v9'; 
-  lat = 37.75;
-  lng = -122.41;
-  message = 'Hello World!';
+  latLng:[]; 
 
   @Input()
   data; 
@@ -22,8 +20,8 @@ export class WalkMap {
   }
   ngOnInit() {
     // this.markers = this.mapService.getMarkers()
-    console.log('data passed through'); 
-    console.log(this.data); 
+  
+    this.latLng = this.data[0].beginning.split(','); 
     this.buildMap(); 
   }
   
@@ -31,13 +29,13 @@ export class WalkMap {
     
   }
   buildMap() {
-    mapboxgl.accessToken = 'pk.eyJ1IjoiZW1pbGllZGFubmVuYmVyZyIsImEiOiJjaXhmOTB6ZnowMDAwMnVzaDVkcnpsY2M1In0.33yDwUq670jHD8flKjzqxg';
-    this.map = new mapboxgl.Map({
-      container: 'map',
-      style: this.style,
-      zoom: 13,
-      center: [this.lng, this.lat]
-    }); 
+      mapboxgl.accessToken = 'pk.eyJ1IjoiZW1pbGllZGFubmVuYmVyZyIsImEiOiJjaXhmOTB6ZnowMDAwMnVzaDVkcnpsY2M1In0.33yDwUq670jHD8flKjzqxg';
+      this.map = new mapboxgl.Map({
+        container: 'map',
+        style: this.style,
+        zoom: 15,
+        center: this.latLng
+      }); 
   }
 
 }
