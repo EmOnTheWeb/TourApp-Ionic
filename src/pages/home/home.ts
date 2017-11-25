@@ -17,16 +17,16 @@ export class HomePage {
 
   	ngOnInit(): void {
        this.walksService.getWalks()
-      .then((walkInfo) => {
+      .then((walksInfo) => {
       	// 	this.walks = [{
       	// 		// id:1,  
 			    // name:'Kentish Town' 
 			    // // image_url:'../../assets/imgs/kentish-town.png',
 			    // // description:'A walk around Kentish Town'
       	// 	}]	
-      		for(let walk of walkInfo) {
+      		for(let walkInfo of walksInfo) {
               
-              let rmvExt = walk.split('.')[0]; 
+              let rmvExt = walkInfo.split('.')[0]; 
               let optVal = rmvExt;  
               let optName = rmvExt.replace(/_/g,' '); 
               this.walks.push({name:optName, val:optVal});

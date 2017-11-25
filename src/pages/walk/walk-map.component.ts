@@ -60,4 +60,9 @@ export class WalkMap {
       console.log(waypointCoordinates); 
       this.mapboxService.plotRoute(routeCoordinates); 
   }
+
+  showWaypointInfo(waypointCoordinates:string[]) {
+    console.log('i clicked'); 
+
+  }
 }

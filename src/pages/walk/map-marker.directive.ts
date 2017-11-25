@@ -10,7 +10,7 @@ export class MapBoxMarkerDirective implements OnInit {
 		width: number = 40;
 		height: number = 40;
 		coordinates: string[];
-		// @Output() click = new EventEmitter();
+		@Output() click = new EventEmitter();
 
 		constructor(public mapboxService: MapboxService) {}
 
@@ -31,16 +31,9 @@ export class MapBoxMarkerDirective implements OnInit {
 				this.coordinates // coordinates
 			);  
 
-			// el.addEventListener("click", () => {
+			el.addEventListener("click", () => {
 
-			// 	if(this.flyTo) {
-			// 		this._mapBoxService.flyTo(this.coordinates, this.flyTo);
-			// 	}
-					
-			// 	this.click.emit({
-			// 		data: this.data,
-			// 		coordinates: this.coordinates
-			// 	});
-			// });
+				this.click.emit();
+			});
 		}
  }
