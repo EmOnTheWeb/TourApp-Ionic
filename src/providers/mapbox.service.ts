@@ -1,12 +1,11 @@
-import { Injectable }    from '@angular/core';
+import { Injectable } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 
 @Injectable()
 export class MapboxService {
-
 	  /// default settings
-  map: mapboxgl.Map;
-  style = 'mapbox://styles/mapbox/streets-v9'; 
+  	map: mapboxgl.Map;
+  	style = 'mapbox://styles/mapbox/streets-v9'; 
    
     constructor() { }
 

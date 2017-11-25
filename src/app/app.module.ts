@@ -11,6 +11,7 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { WalkPage } from '../pages/walk/walk';
 import { WalkMap } from '../pages/walk/walk-map.component';
+import { MapBoxMarkerDirective } from '../pages/walk/map-marker.directive';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage';
@@ -23,7 +24,8 @@ import { IonicStorageModule } from '@ionic/storage';
     HomePage,
     TabsPage, 
     WalkPage,
-    WalkMap
+    WalkMap,
+    MapBoxMarkerDirective
   ],
   imports: [
     BrowserModule,
