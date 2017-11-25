@@ -13,7 +13,7 @@ export class WalkMap {
   data; 
   // data
 
-  markers: any;
+  waypoints: Array<Array<string>>; 
   constructor(public mapboxService: MapboxService) {
   }
   ngOnInit() {
@@ -29,7 +29,6 @@ export class WalkMap {
 
   buildMap() {
       this.mapboxService.buildMap(this.latLng); 
-      console.log(this.latLng); 
       this.gatherRouteCoordinates(); 
   }
 
@@ -37,7 +36,7 @@ export class WalkMap {
       let legs = this.data[0].legs; 
       let routeCoordinates = []; 
       let waypointCoordinates = []; 
-      console.log(waypointCoordinates); 
+      
       legs.forEach(function(leg, legIndex) {
           
           let legSteps = leg.steps; 
@@ -57,6 +56,8 @@ export class WalkMap {
               }) ; 
           }); 
       }); 
+      this.waypoints = waypointCoordinates; 
+      console.log(waypointCoordinates); 
       this.mapboxService.plotRoute(routeCoordinates); 
   }
 }
