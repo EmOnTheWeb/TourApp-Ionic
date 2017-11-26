@@ -10,6 +10,7 @@ import { WalksService } from '../../providers/walks.service';
 export class WaypointPage {
 	  name:string; 
     info:string; 
+    images:string[]; 
 
   	constructor(public navCtrl: NavController, public navParams: NavParams ,private walksService: WalksService) {
         this.name = this.navParams.get("name");
@@ -17,7 +18,7 @@ export class WaypointPage {
 
         let imageFilename = this.name.toLowerCase().replace(/\s/g,'_').replace(/\'/g,''); 
         this.walksService.getWaypointImgPaths(imageFilename).then(paths => { 
-            console.log(paths);  
+            this.images = paths;  
         });
   	}
 
