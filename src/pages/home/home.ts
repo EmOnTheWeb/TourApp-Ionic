@@ -24,9 +24,9 @@ export class HomePage {
 			    // // image_url:'../../assets/imgs/kentish-town.png',
 			    // // description:'A walk around Kentish Town'
       	// 	}]	
-      		for(let walkInfo of walksInfo) {
+      		for(let walk of walksInfo) {
               
-              let rmvExt = walkInfo.split('.')[0]; 
+              let rmvExt = walk.split('.')[0]; 
               let optVal = rmvExt;  
               let optName = rmvExt.replace(/_/g,' '); 
               this.walks.push({name:optName, val:optVal});
