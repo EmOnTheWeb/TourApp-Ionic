@@ -25,5 +25,9 @@ export class WaypointPage {
   	ngOnInit(): void {
 
   	}
+
+    sanitizeSource(imageSrc:string) {
+        return this.sanitizer.bypassSecurityTrustStyle(`${imageSrc}`);
+    }
  
 }

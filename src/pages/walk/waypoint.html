@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{name}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+	<ion-slides  *ngIf="images" pager="true" centeredSlides="false">
+	  <ion-slide *ngFor="let image of images" [style.background-image]="sanitizeSource(image)">
+	    	
+	  </ion-slide>
+	</ion-slides>
+    {{info}}
+</ion-content>
