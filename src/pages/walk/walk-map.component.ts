@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MapboxService } from '../../providers/mapbox.service';
+import { NavController } from 'ionic-angular';
+import { WaypointPage } from './waypoint'; 
 
 @Component({
   selector: 'walk-map',
@@ -14,7 +16,7 @@ export class WalkMap {
   // data
 
   waypoints: Array<Array<string>>; 
-  constructor(public mapboxService: MapboxService) {
+  constructor(public navCtrl: NavController,public mapboxService: MapboxService) {
   }
   ngOnInit() {
     // this.markers = this.mapService.getMarkers()
@@ -65,6 +67,10 @@ export class WalkMap {
       let index = this.waypoints.indexOf(waypoint); 
       let landmarkInfo = this.data[1]; 
       
-      console.log(landmarkInfo); 
+      let nameInfo = landmarkInfo.split(',')[index].trim(); 
+      let name = nameInfo.split(':')[0].trim(); 
+      let info = nameInfo.split(':')[1].trim(); 
+
+      this.navCtrl.push(WaypointPage, {name,info});
   }
 }
