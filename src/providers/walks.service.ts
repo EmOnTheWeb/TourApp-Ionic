@@ -41,7 +41,10 @@ export class WalksService {
         let url = this.walksUrl + 'get-waypoint-images' + '/' + imgFilename;
         return this.http.get(url)
              .toPromise()
-             .then(paths => paths.json())
+             .then(paths => {
+                let pathArray = paths.json(); 
+                return pathArray = pathArray.map((v,i) => this.walksUrl + v.substr(2,v.length-1)); 
+            })
              .catch(this.handleError);
     }
 
