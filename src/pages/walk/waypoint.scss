@@ -1,18 +1,16 @@
 page-waypoint {
 	ion-slides {
+		margin-bottom:15px; 
 		height:auto; 
-		.ion-slide {
-			height:180px; 
-			div {
-				height:100%; 
-				width:100%; 
-				background-size:cover; 
-				background-repeat:no-repeat; 
-				background-position:center center; 
-			}
+		ion-slide.swiper-slide {
+			height:180px; 	
+			width:100%; 
+			background-size:cover; 
+			background-repeat:no-repeat; 
+			background-position:center center; 			
 		}
 		.swiper-container-horizontal > .swiper-pagination {
-			.swiper-pagination-bullet-active {
+			.swiper-pagination-bullet {
 				background-color:red; 
 			}
 		}

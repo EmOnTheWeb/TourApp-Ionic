@@ -5,8 +5,7 @@
 </ion-header>
 <ion-content padding>
 	<ion-slides  *ngIf="images" pager="true" centeredSlides="false">
-	  <ion-slide *ngFor="let image of images" [style.background-image]="sanitizeSource(image)">
-	    	
+	  <ion-slide *ngFor="let image of images" [ngStyle]="{'background-image': 'url(' + image + ')'}">
 	  </ion-slide>
 	</ion-slides>
     {{info}}

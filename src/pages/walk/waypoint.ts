@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { WalksService } from '../../providers/walks.service';  
+import { WalksService } from '../../providers/walks.service'; 
 
 
 @Component({
@@ -11,6 +11,7 @@ export class WaypointPage {
 	  name:string; 
     info:string; 
     images:string[]; 
+    imageTest:string = "http://api-walks.emiliedannenberg.co.uk/landmark_descriptions/images/queen_victoria_street_1.png"; 
 
   	constructor(public navCtrl: NavController, public navParams: NavParams ,private walksService: WalksService) {
         this.name = this.navParams.get("name");
@@ -18,16 +19,12 @@ export class WaypointPage {
 
         let imageFilename = this.name.toLowerCase().replace(/\s/g,'_').replace(/\'/g,''); 
         this.walksService.getWaypointImgPaths(imageFilename).then(paths => { 
-            this.images = paths;  
+            this.images = paths;
+  
         });
   	}
 
   	ngOnInit(): void {
 
   	}
-
-    sanitizeSource(imageSrc:string) {
-        return this.sanitizer.bypassSecurityTrustStyle(`${imageSrc}`);
-    }
- 
 }
