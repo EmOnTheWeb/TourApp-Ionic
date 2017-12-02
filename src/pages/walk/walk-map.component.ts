@@ -13,6 +13,8 @@ export class WalkMap {
 
   @Input()
   data; 
+  @Input()
+  walkDir; 
   // data
 
   waypoints: Array<Array<string>>; 
@@ -70,7 +72,10 @@ export class WalkMap {
       let nameInfo = landmarkInfo.split(',')[index].trim(); 
       let name = nameInfo.split(':')[0].trim(); 
       let info = nameInfo.split(':')[1].trim(); 
+      
+      let walkDir = this.walkDir;  //pass through directory and index to get audio file
+      let waypointNum = index + 1; 
 
-      this.navCtrl.push(WaypointPage, {name,info});
+      this.navCtrl.push(WaypointPage, {name,info, walkDir, waypointNum});
   }
 }

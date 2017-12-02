@@ -15,7 +15,7 @@ export class WalkPage {
     walkData; 
 	
 	constructor(public navCtrl: NavController, private storage: Storage, public navParams: NavParams, private walksService: WalksService) {
-		this.storage.clear(); 
+		// this.storage.clear(); 
 	}
 
 	ngOnInit(): void {

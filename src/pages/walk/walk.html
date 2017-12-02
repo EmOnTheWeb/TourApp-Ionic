@@ -3,5 +3,5 @@
     <ion-title>{{walk.name}}</ion-title>
   </ion-navbar>
 </ion-header>
-<walk-map *ngIf="walkData" [data]=walkData>
+<walk-map *ngIf="walkData" [data]=walkData [walkDir]=walk.val>
 </walk-map>

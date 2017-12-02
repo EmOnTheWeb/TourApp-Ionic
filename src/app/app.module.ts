@@ -16,6 +16,8 @@ import { MapBoxMarkerDirective } from '../pages/walk/map-marker.directive';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage';
+import { IonicAudioModule, WebAudioProvider, CordovaMediaProvider, defaultAudioProviderFactory } from 'ionic-audio';
+
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { IonicStorageModule } from '@ionic/storage';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
+    IonicAudioModule.forRoot(defaultAudioProviderFactory), 
     HttpModule,
 
   ],
