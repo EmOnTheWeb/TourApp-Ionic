@@ -22,7 +22,7 @@ export class WaypointPage {
         this.info = this.navParams.get("info"); 
         this.walkDir = this.navParams.get("walkDir"); 
         this.waypointNum = this.navParams.get("waypointNum").toString(); 
-
+      
         let imageFilename = this.name.toLowerCase().replace(/\s/g,'_').replace(/\'/g,''); 
         this.walksService.getWaypointImgPaths(imageFilename).then(paths => { 
             this.images = paths;
@@ -38,9 +38,9 @@ export class WaypointPage {
         }];
     }
 
-    ngAfterViewChecked() {
-        this.aPTracks = this.audioProvider.tracks; 
-        this.audioProvider.play(this.aPTracks[0].id); 
+    ngAfterViewInit(){
+        this.aPTracks = this.audioProvider.tracks;  
+        this.audioProvider.play(this.aPTracks[this.aPTracks.length-1].id); 
     }
 
 }
