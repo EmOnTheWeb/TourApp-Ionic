@@ -5,8 +5,14 @@
 </ion-header>
 
 <ion-content padding>
-    <div *ngFor="let walk of walks" (click)="goToWalk(walk)">
-        {{walk.name}}
-    </div>
-  
+	<ion-slides  *ngIf="walks" pager="true" centeredSlides="false" loop="true">
+	  <ion-slide *ngFor="let walk of walks">
+	  		<div [ngStyle]="{'background-image': 'url(' + walk.image_url + ')'}">
+        		
+    		</div>
+    		<h1>{{walk.name}}</h1>
+    		<p>{{walk.description}}</p>
+    		<button ion-button (click)="goToWalk(walk)" full>Start Walk</button>
+	  </ion-slide>
+	</ion-slides>  
 </ion-content>
