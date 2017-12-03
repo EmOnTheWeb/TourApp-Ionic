@@ -16,6 +16,7 @@ import { MapBoxMarkerDirective } from '../pages/walk/map-marker.directive';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage';
+import { Geolocation } from '@ionic-native/geolocation';
 import { IonicAudioModule, WebAudioProvider, CordovaMediaProvider, defaultAudioProviderFactory } from 'ionic-audio';
 
 
@@ -55,6 +56,7 @@ import { IonicAudioModule, WebAudioProvider, CordovaMediaProvider, defaultAudioP
     SplashScreen,
     WalksService,
     MapboxService,
+    Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
    
   ]
