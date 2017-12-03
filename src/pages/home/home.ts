@@ -10,7 +10,7 @@ import { WalkPage } from '../walk/walk';
 })
 export class HomePage {
 	  walks = []; 
-    serverUrl = "http://localhost:8888"; 
+    serverUrl = "http://api-walks.emiliedannenberg.co.uk"; 
 
   	constructor(public navCtrl: NavController,private walksService: WalksService) {
 

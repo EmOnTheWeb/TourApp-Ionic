@@ -8,7 +8,7 @@ import { Walk } from '../walk';
 
 @Injectable()
 export class WalksService {
-    private walksUrl = `http:\/\/localhost:8888/`;  // URL to web api
+    private walksUrl = `http:\/\/api-walks.emiliedannenberg.co.uk/`;  // URL to web api
     constructor(private http: Http) { }
 
     getWalks(): Promise<Walk[]> {
