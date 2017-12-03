@@ -1,7 +1,13 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>{{walk.name}}</ion-title>
-  </ion-navbar>
-</ion-header>
-<walk-map *ngIf="walkData" [data]=walkData [walkDir]=walk.val>
-</walk-map>
+<ng-container *ngIf="!error;else errorMsg">
+	<ion-header>
+	  <ion-navbar>
+	    <ion-title>{{walk.name}}</ion-title>
+	  </ion-navbar>
+	</ion-header>
+	<walk-map *ngIf="walkData" [data]=walkData [walkDir]=walk.val>
+	</walk-map>
+</ng-container>
+
+<ng-template #errorMsg>
+     There was a problem fetching the walk.  	
+</ng-template>

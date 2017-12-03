@@ -8,14 +8,15 @@ import { Walk } from '../walk';
 
 @Injectable()
 export class WalksService {
-    private walksUrl = `http:\/\/api-walks.emiliedannenberg.co.uk/`;  // URL to web api
+    private walksUrl = `http:\/\/localhost:8888/`;  // URL to web api
     constructor(private http: Http) { }
 
     getWalks(): Promise<Walk[]> {
     	let url = this.walksUrl + 'list-walks'; 
         return this.http.get(url)
              .toPromise()
-             .then(walks => walks.json() as Walk[]); 
+             .then(walks => walks.json() as Walk[])
+             .catch(this.handleError); 
     }
 
     getDirections(walkVal:any): Promise<any> {
@@ -49,7 +50,6 @@ export class WalksService {
     }
 
     private handleError(error: any): Promise<any> {
-        console.error('An error occurred', error); 
         return Promise.reject(error.message || error);
     } 
 }

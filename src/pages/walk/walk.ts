@@ -13,6 +13,8 @@ export class WalkPage {
 	walkDirections; 
 	walkLandmarks; 
     walkData; 
+
+    error:boolean = false; 
 	
 	constructor(public navCtrl: NavController, private storage: Storage, public navParams: NavParams, private walksService: WalksService) {
 		// this.storage.clear(); 
@@ -49,7 +51,8 @@ export class WalkPage {
                         this.storage.set(this.walk.name,this.walkDirections).then(
                             (value) => console.log('directions stored'),
                             (error) => console.error('Error storing item', error)); 
-                    });  
+                    },
+                    (error) => this.error = true);  
                 }
             }); 
         });   
@@ -113,7 +116,8 @@ export class WalkPage {
                             (value) => console.log('landmarks stored'),
                             (error) => console.error('Error storing item', error)); 
                        
-                    });
+                    },
+                    (error) => this.error = true);
                 }
             }); 
         }); 

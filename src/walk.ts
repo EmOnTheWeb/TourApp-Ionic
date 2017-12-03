@@ -1,5 +1,5 @@
-export class Walk {
-    // id:number;  
+export class Walk { 
     name:string;
-    //description:string; 
+    image_url:string; 
+    description:string; 
 }
