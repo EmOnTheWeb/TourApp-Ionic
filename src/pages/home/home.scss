@@ -1,5 +1,21 @@
 page-home {
 	h1 {
 		text-transform:capitalize; 
+		margin-top:35px; 
+	}
+	.feature-image {
+		height:200px; 
+		background-size:cover; 
+		background-repeat:no-repeat; 
+	}
+	.swiper-pagination-bullets {
+		bottom:auto;
+		top:210px; 
+	}
+	.swiper-slide {
+		display:block!important;
+	}
+	.description {
+		font-size:14px; 
 	}
 }
