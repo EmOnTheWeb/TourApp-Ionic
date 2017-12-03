@@ -14,7 +14,7 @@
 
 <ion-footer no-border>
   <ion-toolbar>    
-	  <audio-track #audio *ngFor="let track of myTracks"  [track]="track" (onFinish)="onTrackFinished($event)">
+	  <audio-track #audio *ngFor="let track of myTracks"  [track]="track">
 	    <ion-item>  
 	      <ion-thumbnail item-left>    
 	        <audio-track-play dark [audioTrack]="audio"><ion-spinner></ion-spinner></audio-track-play>  
