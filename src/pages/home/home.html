@@ -10,6 +10,7 @@
 	  		<div [ngStyle]="{'background-image': 'url(' + walk.image_url + ')'}">
         		
     		</div>
+    		{{walk.image_url}}
     		<h1>{{walk.name}}</h1>
     		<p>{{walk.description}}</p>
     		<button ion-button (click)="goToWalk(walk)" full>Start Walk</button>

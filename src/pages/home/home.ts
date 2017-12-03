@@ -18,13 +18,15 @@ export class HomePage {
   	ngOnInit(): void {
        this.walksService.getWalks()
       .then((walksInfo) => {
-     
+   
       		for(let walk of walksInfo) {
     
               let name = walk.name.trim(); 
-
               let val = name.replace(/ /g,'_'); 
-              this.walks.push({name, val});
+
+              let {image_url, description} = walk; 
+
+              this.walks.push({name, val, image_url, description});
           }
    		});
   	}
