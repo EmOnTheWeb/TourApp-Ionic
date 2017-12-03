@@ -79,11 +79,9 @@ export class WalkMap {
                              //get waypoint info. 
                              console.log('you are at a waypoint');
                              //get leg, get corresponding waypoint info index
-                             // let waypointDescription = getWaypointDescription(i, walkData.landmarkDescriptions);
-                             // buildWaypointPage(waypointDescription);
-
-                             // this.waypointsReached.waypoint.push(i);
-                             // playAudio(i, walkData.walkDirections);
+                             this.showWaypointInfo(null,i,false); 
+                             this.waypointsReached.waypoint.push(i);
+                          
                              // navigator.vibrate(2000);   
                          } else if (currentStep.type === "arrive" && this.atEnd(stepLat, stepLng, coordinateData.end) && !this.waypointsReached.end) { // you're at the end
 
@@ -102,7 +100,7 @@ export class WalkMap {
                          //now break out of everything
                          j = legSteps.length;
                          i = journeyLegs.length;
-                         
+
                      } else {
                          //not close to a waypoint  
                      }
@@ -166,8 +164,14 @@ export class WalkMap {
       this.mapboxService.plotRoute(routeCoordinates); 
   }
 
-  showWaypointInfo(waypoint:string[]) {
-      let index = this.waypoints.indexOf(waypoint); 
+  showWaypointInfo(waypoint:string[],i:number,fromClick:boolean) {
+      let index; 
+      if(fromClick) {
+          index = this.waypoints.indexOf(waypoint); 
+      } 
+      else {
+          index = i; 
+      }
       let landmarkInfo = this.data[1]; 
       
       let nameInfo = landmarkInfo.split(',')[index].trim(); 
