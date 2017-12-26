@@ -31,10 +31,7 @@ export class WaypointPage {
 
         this.myTracks= [{
             src: `http://api-walks.emiliedannenberg.co.uk/waypoint-audio/${this.walkDir}/waypoint_${this.waypointNum}.mp3`,
-            artist: 'John Mayer',
-            title: 'Why Georgia',
-            art: 'img/johnmayer.jpg',
-            preload: 'metadata' // tell the plugin to preload metadata such as duration for this track, set to 'none' to turn off
+            preload: 'none'
         }];
     }
 
