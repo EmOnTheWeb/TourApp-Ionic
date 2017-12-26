@@ -9,7 +9,7 @@ import { AudioProvider } from 'ionic-audio';
   templateUrl: 'waypoint.html'
 })
 export class WaypointPage {
-	  name:string; 
+	name:string; 
     info:string;
     walkDir:string; 
     waypointNum:string;  
@@ -41,6 +41,10 @@ export class WaypointPage {
     ngAfterViewInit(){
         this.aPTracks = this.audioProvider.tracks;  
         this.audioProvider.play(this.aPTracks[this.aPTracks.length-1].id); 
+    }
+
+    ionViewDidLeave() {
+        this.audioProvider.stop(this.aPTracks[this.aPTracks.length-1].id); 
     }
 
 }
