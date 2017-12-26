@@ -26,6 +26,8 @@ export class WalkMap {
   // data
 
   waypoints: Array<Array<string>>; 
+  position: {lat:number, long:number};  
+
   constructor(public navCtrl: NavController,public mapboxService: MapboxService, public geolocation: Geolocation) {
   }
   ngOnInit() {
@@ -51,6 +53,9 @@ export class WalkMap {
 
              let currentLng = position.coords.longitude;
              let currentLat = position.coords.latitude;
+
+             this.position.lat = currentLat; 
+             this.position.long = currentLng; 
              // updateMarkerPosition(currentLng,currentLat, map);
              //loop through all steps to see if you're at a significant location
              let coordinateData = this.data[0];

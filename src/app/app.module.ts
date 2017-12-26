@@ -13,6 +13,7 @@ import { WalkPage } from '../pages/walk/walk';
 import { WalkMap } from '../pages/walk/walk-map.component';
 import { WaypointPage } from '../pages/walk/waypoint';
 import { MapBoxMarkerDirective } from '../pages/walk/map-marker.directive';
+import { PositionMarkerDirective } from '../pages/walk/position-marker.directive';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage';
@@ -30,7 +31,8 @@ import { IonicAudioModule, WebAudioProvider, CordovaMediaProvider, defaultAudioP
     WalkPage,
     WalkMap,
     WaypointPage, 
-    MapBoxMarkerDirective
+    MapBoxMarkerDirective,
+    PositionMarkerDirective
   ],
   imports: [
     BrowserModule,
