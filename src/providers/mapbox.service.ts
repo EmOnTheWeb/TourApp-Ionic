@@ -6,6 +6,9 @@ export class MapboxService {
 	  /// default settings
   	map: mapboxgl.Map;
   	style = 'mapbox://styles/mapbox/streets-v9'; 
+
+    firstFlyTo = true; //keeps track of whether or not marker initialized and flown to
+    currentMarker:mapboxgl.Marker; 
    
     constructor() { }
 
@@ -56,5 +59,31 @@ export class MapboxService {
 				.addTo(this.map);
 		}, 100);	
 
+    }
+
+    updateMarkerPosition(position) { //add marker to map 
+        let long = position.long; 
+        let lat = position.lat; 
+        //delete old marker before readding for new position
+        if(this.currentMarker) {
+            this.currentMarker.remove(); 
+        }
+
+        this.currentMarker = new mapboxgl.Marker()
+        .setLngLat([long,lat])
+        .addTo(this.map);
+
+        let mapBounds = this.map.getBounds(); 
+        
+        let NEBound = mapBounds._ne; 
+        let SWBound = mapBounds._sw; 
+
+        //if marker is outside bounds recenter map
+        if((long > NEBound.lng || long < SWBound.lng || lat > NEBound.lat || lat < SWBound.lat) || this.firstFlyTo) {
+          this.map.flyTo({
+                center: [long, lat]
+            });
+            this.firstFlyTo = false; //want it to fly there first time round ... 
+        }
     }
 }

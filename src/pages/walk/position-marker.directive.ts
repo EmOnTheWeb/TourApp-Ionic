@@ -11,7 +11,6 @@ export class PositionMarkerDirective implements OnInit {
 		constructor(public mapboxService: MapboxService) {}
 
 		ngOnInit() {
-
-			
+			this.mapboxService.updateMarkerPosition(this.position); 
 		}
  }
