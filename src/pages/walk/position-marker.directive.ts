@@ -1,16 +1,16 @@
-import { Directive, Input, OnInit, Inject, Output, EventEmitter } from '@angular/core';
+import { Directive, Input, OnChanges, Inject, Output, EventEmitter } from '@angular/core';
 import { MapboxService } from '../../providers/mapbox.service';
 
 @Directive({
 	selector: 'position-marker',
 	inputs: ['position']
 })
-export class PositionMarkerDirective implements OnInit {
+export class PositionMarkerDirective implements OnChanges {
 		position: {lat:number, long:number};  
 
 		constructor(public mapboxService: MapboxService) {}
 
-		ngOnInit() {
+		ngOnChanges() {
 			this.mapboxService.updateMarkerPosition(this.position); 
 		}
  }
