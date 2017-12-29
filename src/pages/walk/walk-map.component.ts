@@ -178,7 +178,7 @@ export class WalkMap {
       }
       let landmarkInfo = this.data[1]; 
       
-      let nameInfo = landmarkInfo.split(',')[index].trim(); 
+      let nameInfo = landmarkInfo.split(';')[index].trim(); 
       let name = nameInfo.split(':')[0].trim(); 
       let info = nameInfo.split(':')[1].trim(); 
       
