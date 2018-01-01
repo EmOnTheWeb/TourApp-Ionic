@@ -1,5 +1,4 @@
 export class Walk { 
-    name:string;
-    image_url:string; 
+    name:string; 
     description:string; 
 }
