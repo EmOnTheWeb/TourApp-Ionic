@@ -1,21 +1,22 @@
-import { Directive, Input, OnInit, Inject, Output, EventEmitter } from '@angular/core';
+	import { Directive, Input, OnInit, Inject, Output, EventEmitter } from '@angular/core';
 import { MapboxService } from '../../providers/mapbox.service';
 
 @Directive({
 	selector: 'mapbox-marker',
-	inputs: ['coordinates']
+	inputs: ['coordinates','index']
 })
 export class MapBoxMarkerDirective implements OnInit {
 		image: String = 'assets/imgs/icon-marker.png'; 
-		width: number = 40;
-		height: number = 40;
+		width: number = 50;
+		height: number = 50;
 		coordinates: string[];
+		index:number; 
 		@Output() click = new EventEmitter();
 
 		constructor(public mapboxService: MapboxService) {}
 
 		ngOnInit() {
-
+			 
 			var el = document.createElement('div');
 
 			el.className = 'marker';
@@ -24,6 +25,8 @@ export class MapBoxMarkerDirective implements OnInit {
 			el.style.backgroundRepeat 	= 'no-repeat';
 			el.style.width 				= this.width + 'px';	
 			el.style.height 			= this.height + 'px';
+
+			el.setAttribute('data-num', this.index + 1);
 
 			this.mapboxService.marker(
 				el, // element

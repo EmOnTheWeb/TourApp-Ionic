@@ -1,0 +1,10 @@
+.marker::before {
+	
+	content: attr(data-num);
+    font-size: 14px;
+    font-weight: 900;
+    left: 21px;
+    position: relative;
+    color: white;
+
+}

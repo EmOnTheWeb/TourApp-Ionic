@@ -1,7 +1,7 @@
 <div id="map">
 	<mapbox-marker
-        *ngFor="let coordinate of waypoints"
-        [coordinates]="coordinate" (click)="showWaypointInfo(coordinate,null,true)">
+        *ngFor="let coordinate of waypoints; let i=index"
+        [coordinates]="coordinate" [index]="i" (click)="showWaypointInfo(coordinate,null,true)">
     </mapbox-marker>
     <position-marker *ngIf="position" [position]="position">
     </position-marker>
