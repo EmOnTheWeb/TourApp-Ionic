@@ -7,7 +7,7 @@
 <ion-content padding>
 	<ion-slides  *ngIf="walks" pager="true" loop="true">
 	  <ion-slide *ngFor="let walk of walks">
-	  		<div class="feature-image" [ngStyle]="{'background-image': 'url(assets/imgs/' + walk.image_url +')'}">
+	  		<div class="feature-image" [ngStyle]="{'background-image': 'url(' + serverUrl + walk.image_url + ')'}">
         		
     		</div>
     		<h1>{{walk.name}}</h1>
