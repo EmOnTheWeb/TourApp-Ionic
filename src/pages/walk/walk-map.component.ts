@@ -160,25 +160,38 @@ export class WalkMap {
 
                   let intersectionCoordinate = intersection.location; 
                   routeCoordinates.push(intersectionCoordinate); 
-              }) ; 
+              }); 
           }); 
       });
 
       this.waypoints = waypointCoordinates;
-
-      let coordinateStringForSnap = this.reformatRouteCoordinatesForSnapping(this.waypoints); 
-
+      
+      let routeCoordinatesCopy = JSON.parse(JSON.stringify(routeCoordinates)); //so you don't reverse everything with next function
+      
+      let coordinateStringForSnap = this.reformatRouteCoordinatesForSnapping(routeCoordinatesCopy); 
+    
       this.mapboxService.snapRouteToRoad(coordinateStringForSnap).then((response) => {
-        console.log(response); 
-          
+     
+          let snappedRouteCoordinates = []; 
+          // console.log('snapped points',snappedRouteCoordinates); 
+          response.snappedPoints.forEach((pointInfo)=>{
+              
+              let coordinatePair = []; 
+              coordinatePair.push(pointInfo.location.longitude); 
+              coordinatePair.push(pointInfo.location.latitude); 
+
+              snappedRouteCoordinates.push(coordinatePair); 
+          }); 
+          this.mapboxService.plotRoute(snappedRouteCoordinates); 
+
       },
       (error) => {
           this.mapboxService.plotRoute(routeCoordinates); 
-      });  
-      
+      });      
   }
 
   reformatRouteCoordinatesForSnapping(coordinates:Array<Array<string>>) {
+    // console.log('coordinates',coordinates); 
       let arrayLn = coordinates.length; 
 
       let coordsToSnap = coordinates.reduce(function(coordinateString,latLngPair,index) {
@@ -187,7 +200,7 @@ export class WalkMap {
 
           if((arrayLn-1) !== index) { latLngStr += '|'; }
           return coordinateString + latLngStr; 
-      },[]); 
+      },''); 
 
       return coordsToSnap; 
   }

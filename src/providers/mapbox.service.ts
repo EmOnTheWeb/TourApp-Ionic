@@ -25,7 +25,7 @@ export class MapboxService {
     }
 
     plotRoute(coordinates:Array<Array<string>>) {
- 
+    
   	    this.map.on('load', () => {
 
             	this.map.addLayer({
@@ -56,9 +56,9 @@ export class MapboxService {
 
  
     snapRouteToRoad(coordinatesString:string): Promise<any> {
-      console.log('coordinatesstring',coordinatesString); 
+       // console.log('coordinatesstring',coordinatesString); 
         const googleSnapToRoadEndpoint=`https://roads.googleapis.com/v1/snapToRoads?path=${coordinatesString}&interpolate=true&key=AIzaSyBS7JDohrrRFjkBMivYnlj8FlS8c5p0g04`; 
- 
+  
         return this.http.get(googleSnapToRoadEndpoint)
          .toPromise()
          .then(response => response.json())

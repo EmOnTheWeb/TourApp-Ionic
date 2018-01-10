@@ -26,7 +26,8 @@ export class MapBoxMarkerDirective implements OnInit {
 			el.style.width 				= this.width + 'px';	
 			el.style.height 			= this.height + 'px';
 
-			el.setAttribute('data-num', this.index + 1);
+			let num = this.index + 1; 
+			el.setAttribute('data-num', num.toString());
 
 			this.mapboxService.marker(
 				el, // element
