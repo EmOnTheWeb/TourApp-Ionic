@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class MapboxService {
@@ -10,7 +12,7 @@ export class MapboxService {
     firstFlyTo = true; //keeps track of whether or not marker initialized and flown to
     currentMarker:mapboxgl.Marker; 
    
-    constructor() { }
+    constructor(private http: Http) { }
 
     buildMap(latLng:string[]) {
 	    mapboxgl.accessToken = 'pk.eyJ1IjoiZW1pbGllZGFubmVuYmVyZyIsImEiOiJjaXhmOTB6ZnowMDAwMnVzaDVkcnpsY2M1In0.33yDwUq670jHD8flKjzqxg';
@@ -22,34 +24,48 @@ export class MapboxService {
 	    }); 
     }
 
-    plotRoute(coordinates:string[]) {
+    plotRoute(coordinates:Array<Array<string>>) {
+ 
+  	    this.map.on('load', () => {
 
-	    this.map.on('load', () => {
+            	this.map.addLayer({
+                "id": "route",
+                "type": "line",
+                "source": {
+                    "type": "geojson",
+                    "data": {
+                        "type": "Feature",
+                        "properties": {},
+                        "geometry": {
+                            "type": "LineString",
+                            "coordinates": coordinates
+                        }
+                    }
+                },
+                "layout": {
+                    "line-join": "round",
+                    "line-cap": "round"
+                },
+                "paint": {
+                    "line-color": "#d66",
+                    "line-width": 4
+                }
+            	});
+  	    });
+    }
 
-          	this.map.addLayer({
-              "id": "route",
-              "type": "line",
-              "source": {
-                  "type": "geojson",
-                  "data": {
-                      "type": "Feature",
-                      "properties": {},
-                      "geometry": {
-                          "type": "LineString",
-                          "coordinates": coordinates
-                      }
-                  }
-              },
-              "layout": {
-                  "line-join": "round",
-                  "line-cap": "round"
-              },
-              "paint": {
-                  "line-color": "#d66",
-                  "line-width": 4
-              }
-          	});
-	    });
+ 
+    snapRouteToRoad(coordinatesString:string): Promise<any> {
+      console.log('coordinatesstring',coordinatesString); 
+        const googleSnapToRoadEndpoint=`https://roads.googleapis.com/v1/snapToRoads?path=-0.14618,51.548299|-0.146771,51.548582|-0.146315,51.548893&interpolate=true&key=AIzaSyBS7JDohrrRFjkBMivYnlj8FlS8c5p0g04`; 
+ 
+        return this.http.get(googleSnapToRoadEndpoint)
+         .toPromise()
+         .then(response => {
+          console.log('responsefromapi',response); 
+          return response.json()
+        })
+         .catch(this.handleError);
     }
 
     marker(el: any, options: Object, coordinates: string[]) {
@@ -85,5 +101,9 @@ export class MapboxService {
             });
             this.firstFlyTo = false; //want it to fly there first time round ... 
         }
+    }
+
+    private handleError(error: any): Promise<any> {
+        return Promise.reject(error.message || error);
     }
 }

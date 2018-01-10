@@ -164,8 +164,27 @@ export class WalkMap {
           }); 
       });
 
-      this.waypoints = waypointCoordinates; 
-      this.mapboxService.plotRoute(routeCoordinates); 
+      this.waypoints = waypointCoordinates;
+
+      let coordinateStringForSnap = this.reformatRouteCoordinatesForSnapping(routeCoordinates); 
+
+      this.mapboxService.snapRouteToRoad(coordinateStringForSnap).then((response) => {
+        console.log(response); 
+          
+      },
+      (error) => {
+          this.mapboxService.plotRoute(routeCoordinates); 
+      });  
+      
+  }
+
+  reformatRouteCoordinatesForSnapping(coordinates:Array<Array<string>>) {
+      let coordsToSnap = coordinates.reduce(function(coordinateString,latLngPair) {
+          let latLngStr = latLngPair.join(','); 
+          return coordinateString + latLngStr + '|'; 
+      },[]); 
+
+      return coordsToSnap; 
   }
 
   showWaypointInfo(waypoint:string[],i:number,fromClick:boolean) {
