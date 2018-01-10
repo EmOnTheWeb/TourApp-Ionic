@@ -57,16 +57,14 @@ export class MapboxService {
  
     snapRouteToRoad(coordinatesString:string): Promise<any> {
       console.log('coordinatesstring',coordinatesString); 
-        const googleSnapToRoadEndpoint=`https://roads.googleapis.com/v1/snapToRoads?path=-0.14618,51.548299|-0.146771,51.548582|-0.146315,51.548893&interpolate=true&key=AIzaSyBS7JDohrrRFjkBMivYnlj8FlS8c5p0g04`; 
+        const googleSnapToRoadEndpoint=`https://roads.googleapis.com/v1/snapToRoads?path=${coordinatesString}&interpolate=true&key=AIzaSyBS7JDohrrRFjkBMivYnlj8FlS8c5p0g04`; 
  
         return this.http.get(googleSnapToRoadEndpoint)
          .toPromise()
-         .then(response => {
-          console.log('responsefromapi',response); 
-          return response.json()
-        })
+         .then(response => response.json())
          .catch(this.handleError);
     }
+
 
     marker(el: any, options: Object, coordinates: string[]) {
 		setTimeout(() => {

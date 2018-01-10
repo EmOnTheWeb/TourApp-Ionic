@@ -166,7 +166,7 @@ export class WalkMap {
 
       this.waypoints = waypointCoordinates;
 
-      let coordinateStringForSnap = this.reformatRouteCoordinatesForSnapping(routeCoordinates); 
+      let coordinateStringForSnap = this.reformatRouteCoordinatesForSnapping(this.waypoints); 
 
       this.mapboxService.snapRouteToRoad(coordinateStringForSnap).then((response) => {
         console.log(response); 
@@ -179,9 +179,14 @@ export class WalkMap {
   }
 
   reformatRouteCoordinatesForSnapping(coordinates:Array<Array<string>>) {
-      let coordsToSnap = coordinates.reduce(function(coordinateString,latLngPair) {
+      let arrayLn = coordinates.length; 
+
+      let coordsToSnap = coordinates.reduce(function(coordinateString,latLngPair,index) {
+          latLngPair.reverse(); 
           let latLngStr = latLngPair.join(','); 
-          return coordinateString + latLngStr + '|'; 
+
+          if((arrayLn-1) !== index) { latLngStr += '|'; }
+          return coordinateString + latLngStr; 
       },[]); 
 
       return coordsToSnap; 
