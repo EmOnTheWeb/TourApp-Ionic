@@ -1,4 +1,4 @@
-	import { Directive, Input, OnInit, Inject, Output, EventEmitter } from '@angular/core';
+import { Directive, Input, OnInit, Inject, Output, EventEmitter } from '@angular/core';
 import { MapboxService } from '../../providers/mapbox.service';
 
 @Directive({

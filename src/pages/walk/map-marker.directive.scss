@@ -3,8 +3,9 @@
 	content: attr(data-num);
     font-size: 14px;
     font-weight: 900;
-    left: 21px;
-    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
     color: white;
 
 }
