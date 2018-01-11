@@ -17,4 +17,10 @@
 
 ion-title.title {
 	padding:0 30px;
+	text-align:center; 
+}
+.back-button.show-back-button {
+	margin-right:-44px; 
+	position:relative; 
+	z-index:7; 
 }
